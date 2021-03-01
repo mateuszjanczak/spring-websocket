@@ -4,20 +4,28 @@
     <title>Websocket</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous"></script>
 </head>
-<body>
-<div id="login-box">
-    <input id="username" placeholder="Username..."/>
-    <button id="login">Login</button>
+<body class="bg-gradient">
+<div class="header">
+    <h1>Spring Websocket</h1>
+    <h4>gh/mateuszjanczak</h4>
 </div>
 
-<div id="message-box" style="display: none">
-    <input id="message" placeholder="Message..."/>
-    <button id="send">Send</button>
+<div id="login-box" class="text-center">
+    <input id="username" placeholder="Username..." class="input" autofocus />
+    <button id="login" class="input">Connect</button>
 </div>
 
-<div id="chat-box">
+<div id="message-box" class="text-center sticky-bottom" style="display: none">
+    <input id="message" placeholder="Message..." class="input"/>
+    <button id="send" class="input">Send</button>
+</div>
+
+<div id="chat-box" class="chat-container">
 
 </div>
 </body>

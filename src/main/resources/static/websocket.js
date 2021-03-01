@@ -19,15 +19,21 @@ loginButton.addEventListener("click", () => {
     ws.subscribe("/topic/messages", ({body}) => {
         const messages = JSON.parse(body);
         messages.map(({username, content}) => {
-            chatContainer.innerHTML += username + " - " + content + "<br \>";
+            chatContainer.innerHTML += "<p class='message'>" + "<span class='nick'>" + username + "</span>" + " - " + content + "</p>";
         })
     })
 
-    sendButton.addEventListener("click", () => {
+    const handleSendButton = () => {
         const message = messageInput.value;
         ws.send("/app/chat", {}, JSON.stringify({'username': username, 'content': message}));
-    })
+        messageInput.value = "";
+    };
+
+    sendButton.addEventListener("click", handleSendButton);
+    messageInput.addEventListener("keypress", ({keyCode}) => { if(keyCode === 13) handleSendButton() });
 
     loginContainer.style.display = 'none';
     messageContainer.style.display = '';
+
+    messageInput.focus();
 })
