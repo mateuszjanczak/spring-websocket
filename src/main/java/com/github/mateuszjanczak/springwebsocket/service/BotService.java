@@ -70,4 +70,10 @@ public class BotService {
 
         return Arrays.asList(user, bot);
     }
+
+    public List<Message> handleActionClear(Message user) {
+        Message bot = Message.Bot();
+        bot.setContent(user.getUsername() + " cleared the chat!");
+        return Arrays.asList(user, bot);
+    }
 }

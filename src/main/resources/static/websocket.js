@@ -1,4 +1,5 @@
-const ws = Stomp.client(`ws://${location.host}/chat`);
+const url = location.host === "gh-mj-ws.herokuapp.com" ? "wss://gh-mj-ws.herokuapp.com/chat" : "ws://localhost:8080/chat";
+const ws = Stomp.client(url);
 
 let username = "Guest";
 const chatContainer = document.getElementById("chat-box");
@@ -19,6 +20,7 @@ loginButton.addEventListener("click", () => {
     ws.subscribe("/topic/messages", ({body}) => {
         const messages = JSON.parse(body);
         messages.map(({username, content}) => {
+            if(content.endsWith("cleared the chat!")) chatContainer.innerHTML = "";
             chatContainer.innerHTML += "<p class='message'>" + "<span class='nick'>" + username + "</span>" + " - " + content + "</p>";
         })
         chatContainer.scrollTop = chatContainer.scrollHeight;

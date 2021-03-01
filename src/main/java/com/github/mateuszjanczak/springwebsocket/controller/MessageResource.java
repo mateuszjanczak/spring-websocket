@@ -32,6 +32,10 @@ public class MessageResource {
     private List<Message> handleAction(Message user) {
         String action = user.getContent().substring(1, user.getContent().length() - 1);
 
+        if(action.equals("clear")) {
+            return botService.handleActionClear(user);
+        }
+
         if(action.equals("joined")) {
             return botService.handleActionJoin(user);
         }
