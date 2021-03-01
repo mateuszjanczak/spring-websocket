@@ -40,6 +40,10 @@ public class MessageResource {
             return botService.handleActionBitcoin(user);
         }
 
+        if(action.equals("covid")) {
+            return botService.handleActionCovid(user);
+        }
+
         if(NumberUtils.isDigits(action)) {
             return botService.handleActionNumbers(user, action);
         }

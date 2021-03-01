@@ -1,4 +1,4 @@
-const ws = Stomp.client("ws://localhost:8080/chat");
+const ws = Stomp.client(`ws://${location.host}/chat`);
 
 let username = "Guest";
 const chatContainer = document.getElementById("chat-box");
@@ -21,10 +21,12 @@ loginButton.addEventListener("click", () => {
         messages.map(({username, content}) => {
             chatContainer.innerHTML += "<p class='message'>" + "<span class='nick'>" + username + "</span>" + " - " + content + "</p>";
         })
+        chatContainer.scrollTop = chatContainer.scrollHeight;
     })
 
     const handleSendButton = () => {
         const message = messageInput.value;
+        if(message.length === 0) return;
         ws.send("/app/chat", {}, JSON.stringify({'username': username, 'content': message}));
         messageInput.value = "";
     };

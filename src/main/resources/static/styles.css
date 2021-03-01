@@ -22,6 +22,10 @@ body {
     padding: 0;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .header {
     margin: 5rem 0;
 }
@@ -57,8 +61,7 @@ input:focus {
 }
 
 .sticky-bottom {
-    //border-top: 1px solid white;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -67,6 +70,8 @@ input:focus {
 .chat-container {
     color: white;
     font-size: 14px;
+    overflow-y: scroll;
+    height: 75vh;
 }
 
 .chat-container .message {

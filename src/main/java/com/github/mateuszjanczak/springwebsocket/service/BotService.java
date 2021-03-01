@@ -1,6 +1,7 @@
 package com.github.mateuszjanczak.springwebsocket.service;
 
 import com.github.mateuszjanczak.springwebsocket.model.Coin;
+import com.github.mateuszjanczak.springwebsocket.model.Covid;
 import com.github.mateuszjanczak.springwebsocket.model.Message;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +14,7 @@ import java.util.List;
 public class BotService {
 
     private int randomNumber;
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     public BotService() {
         generateNumber();
@@ -54,6 +55,18 @@ public class BotService {
 
         assert response != null;
         bot.setContent(response[0].toString());
+
+        return Arrays.asList(user, bot);
+    }
+
+    public List<Message> handleActionCovid(Message user) {
+        Message bot = Message.Bot();
+
+        String url = "https://koronawirus-api.herokuapp.com/api/covid19/daily";
+        Covid response = restTemplate.getForObject(url, Covid.class);
+
+        assert response != null;
+        bot.setContent("Covid - Today { infections = " + response.getToday().getNewInfections() + ", deaths = " + response.getToday().getNewDeaths() + " }, General { infections = " + response.getGeneral().getInfections() + ", deaths = " + response.getGeneral().getDeaths() + ", recovered = " + response.getGeneral().getRecovered() + " }");
 
         return Arrays.asList(user, bot);
     }
