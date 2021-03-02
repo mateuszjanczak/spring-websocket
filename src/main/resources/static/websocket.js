@@ -21,7 +21,7 @@ loginButton.addEventListener("click", () => {
         const messages = JSON.parse(body);
         messages.map(({username, content}) => {
             if(content.endsWith("cleared the chat!")) chatContainer.innerHTML = "";
-            chatContainer.innerHTML += "<p class='message'>" + "<span class='nick'>" + username + "</span>" + " - " + content + "</p>";
+            chatContainer.insertAdjacentHTML('beforeend', "<p class='message'>" + "<span class='nick'>" + username + "</span>" + " - " + content + "</p>");
         })
         chatContainer.scrollTop = chatContainer.scrollHeight;
     })

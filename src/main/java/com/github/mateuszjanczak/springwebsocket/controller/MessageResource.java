@@ -48,6 +48,10 @@ public class MessageResource {
             return botService.handleActionCovid(user);
         }
 
+        if (action.startsWith("yt")) {
+            return botService.handleActionYoutube(user);
+        }
+
         if(NumberUtils.isDigits(action)) {
             return botService.handleActionNumbers(user, action);
         }

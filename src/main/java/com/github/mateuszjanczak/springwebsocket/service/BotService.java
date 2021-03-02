@@ -3,6 +3,7 @@ package com.github.mateuszjanczak.springwebsocket.service;
 import com.github.mateuszjanczak.springwebsocket.model.Coin;
 import com.github.mateuszjanczak.springwebsocket.model.Covid;
 import com.github.mateuszjanczak.springwebsocket.model.Message;
+import com.github.mateuszjanczak.springwebsocket.utils.YoutubeHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -74,6 +75,23 @@ public class BotService {
     public List<Message> handleActionClear(Message user) {
         Message bot = Message.Bot();
         bot.setContent(user.getUsername() + " cleared the chat!");
+        return Arrays.asList(user, bot);
+    }
+
+    public List<Message> handleActionYoutube(Message user) {
+        Message bot = Message.Bot();
+        String link = user.getContent().substring(3);
+        String subject = YoutubeHelper.extractVideoIdFromUrl(link);
+
+        if(subject.isEmpty()) {
+            bot.setContent(user.getContent() + " your video has not been found!");
+            return Arrays.asList(user, bot);
+        }
+
+        String id = subject.substring(1, subject.length() - 1);
+
+        String iframe = "<center><iframe width=\"720\" height=\"360\" src=\"https://www.youtube.com/embed/" + id + "?autoplay=1/\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></center>";
+        bot.setContentForce(iframe);
         return Arrays.asList(user, bot);
     }
 }

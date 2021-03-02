@@ -30,4 +30,8 @@ public class Message {
     public void setContent(String content) {
         this.content = escapeHtml(content);
     }
+
+    public void setContentForce(String content) {
+        this.content = content;
+    }
 }
