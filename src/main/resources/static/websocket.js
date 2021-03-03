@@ -1,4 +1,4 @@
-const url = location.host === "gh-mj-ws.herokuapp.com" ? "wss://gh-mj-ws.herokuapp.com/chat" : "ws://localhost:8080/chat";
+const url = location.host === "mj-websocket.herokuapp.com" ? "wss://mj-websocket.herokuapp.com/chat" : "ws://localhost:8080/chat";
 const ws = Stomp.client(url);
 
 let username = "Guest";

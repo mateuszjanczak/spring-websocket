@@ -32,5 +32,5 @@ Guess the number
 ![PREVIEW](./docs/preview.gif)
 
 ### Live demo
-https://gh-mj-ws.herokuapp.com/
+https://mj-websocket.herokuapp.com/
 (wait for heroku to get up)
