@@ -1,6 +1,13 @@
 # Spring Websocket
 Real-time chat with various features
 
+### Live demo
+https://mj-websocket.herokuapp.com/
+(wait for heroku to get up)
+
+### Preview
+![PREVIEW](./docs/preview.gif)
+
 ### Commands
 
 Clear chat
@@ -27,10 +34,3 @@ Guess the number
 ```
 [<1, 1000>] ex. [500]
 ```
-
-### Preview
-![PREVIEW](./docs/preview.gif)
-
-### Live demo
-https://mj-websocket.herokuapp.com/
-(wait for heroku to get up)
